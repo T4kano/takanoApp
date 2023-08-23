@@ -1,0 +1,52 @@
+#side_nav {
+  background: #fafafafa;
+  transition: all .5s ease;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 5rem;
+  height: 100vh;
+  box-shadow: .063rem 0 1.25rem 0 #8690a3;
+  padding: .5rem;
+}
+
+#side_nav.sidebar-collapsed {
+  width: 16.5625rem;
+}
+
+#side_nav a i {
+  margin-right: 1rem;
+}
+
+.header-box {
+  display: flex;
+}
+
+.logo {
+  text-align: center;
+  width: 3rem;
+  min-width: 3rem;
+  border-radius: .313rem;
+  padding: .313rem;
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+  border: none;
+}
+
+.sidebar .nav-list {
+  border-radius: .5rem;
+}
+
+.sidebar .nav-list:hover {
+  background: var(--bs-gray-200);
+}
+
+.sidebar li.active {
+  background: var(--bs-blue);
+}
+
+.sidebar li.active a {
+  color: #fff;
+}

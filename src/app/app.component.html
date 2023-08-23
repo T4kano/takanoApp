@@ -1,8 +1,5 @@
-<div class="page-wrapper">
-  <div class="container bg-light p-5">
-    <router-outlet></router-outlet>
-    <div>
-      <a routerLink="/product-create">Teste</a>
-    </div>
-  </div>
-</div>
+<app-sidebar (onToggleSidebar)="onToggleSidebar($event)"></app-sidebar>
+<app-body
+  [collapsed]="isSidebarCollapsed"
+  [screenWidth]="screenWidth"
+></app-body>
