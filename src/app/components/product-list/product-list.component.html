@@ -1,9 +1,8 @@
-<div class="table-responsive">
+<div class="table-responsive" *ngIf="prods.length > 0; else noProducts">
   <table class="table table-bordered">
     <thead class="table-dark">
       <tr>
         <th scope="col">Nome</th>
-        <th scope="col">Unidade de Medida</th>
         <th scope="col">Quantidade</th>
         <th scope="col">Preço</th>
         <th scope="col">Data de Validade</th>
@@ -15,12 +14,11 @@
     <tbody>
       <tr *ngFor="let prod of prods">
         <td>{{ prod.name }}</td>
-        <td>{{ prod.unity }}</td>
-        <td>{{ prod.quantity }}</td>
-        <td>{{ prod.price }}</td>
-        <td>{{ prod.validity | date:"dd/MM/yyyy" }}</td>
-        <td>{{ prod.manufacture | date:"dd/MM/yyyy" }}</td>
-        <td>{{ prod.perishable }}</td>
+        <td>{{ prod.quantity }} <span>{{ prod.unit }}</span></td>
+        <td>R$ {{ prod.price }}</td>
+        <td>{{ prod.expiration_date | date:"dd/MM/yyyy" }}</td>
+        <td>{{ prod.manufacturing_date | date:"dd/MM/yyyy" }}</td>
+        <td>{{ prod.perishable ? 'Sim' : 'Não' }}</td>
         <td class="d-flex">
           <a [routerLink]="['/product-edit', prod.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen-to-square"></i></a>
           <button (click)="deleteProduct(prod.id)" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
@@ -29,3 +27,7 @@
     </tbody>
   </table>
 </div>
+
+<ng-template #noProducts>
+  <h1>Sem Registro no momento!</h1>
+</ng-template>

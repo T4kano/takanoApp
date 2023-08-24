@@ -10,6 +10,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BodyComponent } from './components/body/body.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     SidebarComponent,
     BodyComponent,
     ProductFormComponent,
-    MessagesComponent
+    MessagesComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,

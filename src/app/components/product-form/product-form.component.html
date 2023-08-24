@@ -6,6 +6,7 @@
     [formGroup]="productForm"
     #formDir="ngForm"
   >
+  <input type="hidden" formControlName="id" />
     <!-- Nome * -->
     <div class="col-lg-4">
       <label for="productName" class="form-label">Nome do Produto *</label>
@@ -29,9 +30,9 @@
     <div class="col-md-6 col-lg-4">
       <label for="unit" class="form-label">Unidade de Medida</label>
       <select class="form-select" id="unit" formControlName="unit">
-        <option value="1" selected>Litros</option>
-        <option value="2">Quilograma</option>
-        <option value="3">Unidade</option>
+        <option value="lt" selected>Litros</option>
+        <option value="kg">Quilograma</option>
+        <option value="un">Unidade</option>
       </select>
       <div
         class="form-text"

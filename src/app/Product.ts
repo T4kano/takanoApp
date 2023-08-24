@@ -1,7 +1,7 @@
 export interface Product {
   id?: string;
   name: string;
-  unit: number;
+  unit: string;
   quantity: number;
   price: number;
   expiration_date?: number;

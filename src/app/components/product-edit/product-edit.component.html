@@ -1,0 +1,10 @@
+<div *ngIf="prod">
+  <h2>
+    Editando o produto <span>{{ prod.name }}</span>
+  </h2>
+  <app-product-form
+    (onSubmit)="updateHandler($event)"
+    [productData]="prod"
+    [btnText]="btnText"
+  ></app-product-form>
+</div>

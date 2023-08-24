@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/Product';
-import { ProductService } from 'src/app/services/product.service';
-import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
+
+import { v4 as uuidv4 } from 'uuid';
+
 import { MessagesService } from 'src/app/services/messages.service';
+import { ProductService } from 'src/app/services/product.service';
+
+import { Product } from 'src/app/Product';
 
 @Component({
   selector: 'app-product-create',

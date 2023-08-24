@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
+import { MessagesService } from 'src/app/services/messages.service';
 
 
 @Component({
@@ -10,7 +11,10 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductListComponent implements OnInit {
   prods: any;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private messageService: MessagesService,
+    ) {}
 
   ngOnInit(): void {
     this.prods = this.productService.getProducts();
@@ -23,6 +27,11 @@ export class ProductListComponent implements OnInit {
       }
     }
 
-    this.productService.deleteProduct(id);
+    try {
+      this.productService.deleteProduct(id);
+      this.messageService.add("Produto deletado com sucesso!");
+    } catch(err) {
+      console.log(err);
+    }
   }
 }

@@ -12,6 +12,7 @@ import { Product } from 'src/app/Product';
 export class ProductFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Product>()
   @Input() btnText!: string;
+  @Input() productData: Product | null = null;
 
   productForm!: FormGroup;
 
@@ -23,29 +24,15 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = new FormGroup({
-      id: new FormControl(''),
-      name: new FormControl('', [Validators.required]),
-      unit: new FormControl('', [Validators.required]),
-      quantity: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
-      expiration_date: new FormControl('', [Validators.required]),
-      manufacturing_date: new FormControl('', [Validators.required]),
-      perishable: new FormControl('', [Validators.required]),
+      id: new FormControl(this.productData ? this.productData.id : ''),
+      name: new FormControl(this.productData ? this.productData.name : '', [Validators.required]),
+      unit: new FormControl(this.productData ? this.productData.unit : '', [Validators.required]),
+      quantity: new FormControl(this.productData ? this.productData.quantity : '', [Validators.required]),
+      price: new FormControl(this.productData ? this.productData.price : '', [Validators.required]),
+      expiration_date: new FormControl(this.productData ? this.productData.expiration_date : ''),
+      manufacturing_date: new FormControl(this.productData ? this.productData.manufacturing_date : '', [Validators.required]),
+      perishable: new FormControl(this.productData ? this.productData.perishable : '', [Validators.required]),
     })
-
-    // Form Control
-    // this.productForm = this.formBuilder.group({
-    //   name: ['', Validators.required],
-    //   unit: ['', Validators.required],
-    //   quantity: ['', Validators.required],
-    //   price: ['', Validators.required],
-    //   validity: ['', Validators.required],
-    //   manufacture: ['', Validators.required],
-    //   perishable: ['', Validators.required],
-    // });
-
-    // Get Products
-    // this.prods = this.productService.getProducts();
   }
 
   get name() {
