@@ -21,17 +21,19 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(id: string) {
-    for(let i = 0; i < this.prods.length; i++) {
-      if(this.prods[i].id == id) {
-          this.prods.splice(i, 1);
+    if(confirm('Dejesa deletar o produto?')) {
+      for(let i = 0; i < this.prods.length; i++) {
+        if(this.prods[i].id == id) {
+            this.prods.splice(i, 1);
+        }
       }
-    }
-
-    try {
-      this.productService.deleteProduct(id);
-      this.messageService.add("Produto deletado com sucesso!");
-    } catch(err) {
-      console.log(err);
-    }
+  
+      try {
+        this.productService.deleteProduct(id);
+        this.messageService.add("Produto deletado com sucesso!");
+      } catch(err) {
+        console.log(err);
+      }
+    } else { return }
   }
 }

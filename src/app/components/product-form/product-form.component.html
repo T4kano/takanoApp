@@ -6,7 +6,7 @@
     [formGroup]="productForm"
     #formDir="ngForm"
   >
-  <input type="hidden" formControlName="id" />
+    <input type="hidden" formControlName="id" />
     <!-- Nome * -->
     <div class="col-lg-4">
       <label for="productName" class="form-label">Nome do Produto *</label>
@@ -14,26 +14,43 @@
         class="form-control"
         id="productName"
         formControlName="name"
-        maxlength="50"
         required
+        mask="S*"
       />
+
+      <!-- Error message -->
       <div
         class="form-text"
-        *ngIf="name.invalid && formDir.submitted"
+        *ngIf="name.errors?.['required'] && formDir.submitted"
         class="validation-error"
       >
         <span>O Nome é obrigatório!</span>
+      </div>
+      <div
+        class="form-text"
+        *ngIf="name.errors?.['maxlength'] && formDir.submitted"
+        class="validation-error"
+      >
+        <span>Permitido somente 50 caractéres!</span>
       </div>
     </div>
 
     <!-- Unidade de Medida * -->
     <div class="col-md-6 col-lg-4">
-      <label for="unit" class="form-label">Unidade de Medida</label>
-      <select class="form-select" id="unit" formControlName="unit">
+      <label for="unit" class="form-label">Unidade de Medida *</label>
+      <select
+        class="form-select"
+        id="unit"
+        formControlName="unit"
+        required
+        (change)="quantityMask()"
+      >
         <option value="lt" selected>Litros</option>
         <option value="kg">Quilograma</option>
         <option value="un">Unidade</option>
       </select>
+
+      <!-- Error message -->
       <div
         class="form-text"
         *ngIf="unit.invalid && formDir.submitted"
@@ -45,24 +62,67 @@
 
     <!-- Quantidade * -->
     <div class="col-md-6 col-lg-4">
-      <label for="quantity" class="form-label">Quantidade</label>
+      <label for="quantity" class="form-label">Quantidade *</label>
       <div class="input-group">
+        <!-- type="number" -->
         <input
-          type="number"
           class="form-control"
           id="quantity"
           formControlName="quantity"
+          thousandSeparator="."
+          [mask]="quantityMask()"
+          required
         />
-        <span class="input-group-text">kg</span>
+        <span class="input-group-text">{{
+          this.productForm.value.unit ? this.productForm.value.unit : "lt"
+        }}</span>
+      </div>
+
+      <!-- Error message -->
+      <div
+        class="form-text"
+        *ngIf="quantity.errors?.['required'] && formDir.submitted"
+        class="validation-error"
+      >
+        <span>A quantidade é obrigatória!</span>
+      </div>
+      <div
+        class="form-text"
+        *ngIf="quantity.errors?.['min']"
+        class="validation-error"
+      >
+        <span>Insira um valor maior!</span>
       </div>
     </div>
 
     <!-- Preço * -->
     <div class="col-md-6 col-lg-4">
-      <label for="price" class="form-label">Preço</label>
+      <label for="price" class="form-label">Preço *</label>
       <div class="input-group">
         <span class="input-group-text">R$</span>
-        <input class="form-control" id="price" formControlName="price" />
+        <input
+          class="form-control"
+          id="price"
+          formControlName="price"
+          currencyMask
+          [options]="{ prefix: '', thousands: '.', decimal: ',' }"
+          required
+        />
+      </div>
+      <!-- Error message -->
+      <div
+        class="form-text"
+        *ngIf="price.errors?.['required'] && formDir.submitted"
+        class="validation-error"
+      >
+        <span>O Preço é obrigatório!</span>
+      </div>
+      <div
+        class="form-text"
+        *ngIf="price.errors?.['min']"
+        class="validation-error"
+      >
+        <span>Insira um valor maior!</span>
       </div>
     </div>
 
@@ -74,20 +134,47 @@
         class="form-control"
         id="expiration_date"
         formControlName="expiration_date"
+        (change)="expiredProduct()"
       />
+
+      <!-- Error message -->
+      <div
+        class="form-text"
+        *ngIf="expiration_date.invalid && formDir.submitted"
+        class="validation-error"
+      >
+        <span>Insira a data de validade</span>
+      </div>
+      <div
+        class="form-text"
+        *ngIf="expiredProduct()"
+        class="validation-error"
+      >
+        <span>Produto vencido!</span>
+      </div>
     </div>
 
     <!-- Data de Fabricação * -->
     <div class="col-md-6 col-lg-4">
       <label for="manufacturing_date" class="form-label"
-        >Data de Fabricação</label
+        >Data de Fabricação *</label
       >
       <input
         type="date"
         class="form-control"
         id="manufacturing_date"
         formControlName="manufacturing_date"
+        required
       />
+
+      <!-- Error message -->
+      <div
+        class="form-text"
+        *ngIf="manufacturing_date.invalid && formDir.submitted"
+        class="validation-error"
+      >
+        <span>A data de fabricação é obrigatória</span>
+      </div>
     </div>
 
     <!-- Perecível * -->
@@ -99,15 +186,15 @@
           id="perishable"
           formControlName="perishable"
           value="false"
+          (change)="isPerishable()"
         />
-        <!-- (change)="isPerishable($event)" -->
         <label class="form-check-label">Produto Perecível?</label>
       </div>
     </div>
 
     <div class="col-12">
       <!-- <button type="submit" class="btn btn-primary" (click)="submitProduct()" [disabled]="this.productForm.invalid"> -->
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary me-3">
         {{ btnText }} <i class="fa-solid fa-caret-right"></i>
       </button>
       <button class="btn btn-danger" routerLink="/">

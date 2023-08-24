@@ -32,8 +32,6 @@ export class ProductCreateComponent implements OnInit {
   createHandler(product: Product) {
 
     if (product) {
-      // console.log(product);
-
       let newProduct = {
         id: uuidv4(),
         name: product.name,
