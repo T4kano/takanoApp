@@ -6,18 +6,26 @@
   position: relative;
   top: 0;
   transition: all .5s ease;
-  background: #fafafa;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 2rem;
 }
 
 .body-trimmed {
   width: calc(100% - 16.5625rem);
   margin-left: 16.5625rem;
+  padding: 0 10rem;
 }
 
 .body-md-screen {
   width: calc(100% - 5rem);
   margin-left: 5rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .body {
+    padding: 0 10rem;
+  }
 }

@@ -1,6 +1,10 @@
 export interface Product {
-  id: number;
-  firstName: string;
-  lastName: string;
-  languages: [];
+  id?: number;
+  name?: string;
+  unit?: number;
+  quantity?: number;
+  price?: number;
+  validity?: number;
+  manufacture?: Date;
+  perishable?: boolean;
 }

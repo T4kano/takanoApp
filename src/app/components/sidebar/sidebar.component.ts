@@ -14,7 +14,7 @@ interface SidebarToggle {
 export class SidebarComponent implements OnInit {
 
   @Output() onToggleSidebar: EventEmitter<SidebarToggle> = new EventEmitter
-  collapsed = true;
+  collapsed = false;
   screenWidth = 0;
   navData = navbarData;
 
