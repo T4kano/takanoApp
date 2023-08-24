@@ -1,10 +1,10 @@
 export interface Product {
-  id?: number;
-  name?: string;
-  unit?: number;
-  quantity?: number;
-  price?: number;
-  validity?: number;
-  manufacture?: Date;
-  perishable?: boolean;
+  id?: string;
+  name: string;
+  unit: number;
+  quantity: number;
+  price: number;
+  expiration_date?: number;
+  manufacturing_date: Date;
+  perishable: boolean;
 }

@@ -1,0 +1,117 @@
+<!-- Formulário de de Produtos -->
+<div class="row col">
+  <form
+    class="row g-4"
+    (ngSubmit)="submit()"
+    [formGroup]="productForm"
+    #formDir="ngForm"
+  >
+    <!-- Nome * -->
+    <div class="col-lg-4">
+      <label for="productName" class="form-label">Nome do Produto *</label>
+      <input
+        class="form-control"
+        id="productName"
+        formControlName="name"
+        maxlength="50"
+        required
+      />
+      <div
+        class="form-text"
+        *ngIf="name.invalid && formDir.submitted"
+        class="validation-error"
+      >
+        <span>O Nome é obrigatório!</span>
+      </div>
+    </div>
+
+    <!-- Unidade de Medida * -->
+    <div class="col-md-6 col-lg-4">
+      <label for="unit" class="form-label">Unidade de Medida</label>
+      <select class="form-select" id="unit" formControlName="unit">
+        <option value="1" selected>Litros</option>
+        <option value="2">Quilograma</option>
+        <option value="3">Unidade</option>
+      </select>
+      <div
+        class="form-text"
+        *ngIf="unit.invalid && formDir.submitted"
+        class="validation-error"
+      >
+        <span>A unidade de medida é obrigatória!</span>
+      </div>
+    </div>
+
+    <!-- Quantidade * -->
+    <div class="col-md-6 col-lg-4">
+      <label for="quantity" class="form-label">Quantidade</label>
+      <div class="input-group">
+        <input
+          type="number"
+          class="form-control"
+          id="quantity"
+          formControlName="quantity"
+        />
+        <span class="input-group-text">kg</span>
+      </div>
+    </div>
+
+    <!-- Preço * -->
+    <div class="col-md-6 col-lg-4">
+      <label for="price" class="form-label">Preço</label>
+      <div class="input-group">
+        <span class="input-group-text">R$</span>
+        <input class="form-control" id="price" formControlName="price" />
+      </div>
+    </div>
+
+    <!-- Data de Validade -->
+    <div class="col-md-6 col-lg-4">
+      <label for="expiration_date" class="form-label">Data de Validade</label>
+      <input
+        type="date"
+        class="form-control"
+        id="expiration_date"
+        formControlName="expiration_date"
+      />
+    </div>
+
+    <!-- Data de Fabricação * -->
+    <div class="col-md-6 col-lg-4">
+      <label for="manufacturing_date" class="form-label"
+        >Data de Fabricação</label
+      >
+      <input
+        type="date"
+        class="form-control"
+        id="manufacturing_date"
+        formControlName="manufacturing_date"
+      />
+    </div>
+
+    <!-- Perecível * -->
+    <div class="col-12">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="perishable"
+          formControlName="perishable"
+          value="false"
+        />
+        <!-- (change)="isPerishable($event)" -->
+        <label class="form-check-label">Produto Perecível?</label>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <!-- <button type="submit" class="btn btn-primary" (click)="submitProduct()" [disabled]="this.productForm.invalid"> -->
+      <button type="submit" class="btn btn-primary">
+        {{ btnText }} <i class="fa-solid fa-caret-right"></i>
+      </button>
+      <button class="btn btn-danger" routerLink="/">
+        Cancelar <i class="fa-solid fa-warning"></i>
+      </button>
+    </div>
+  </form>
+</div>

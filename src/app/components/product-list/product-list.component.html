@@ -2,7 +2,6 @@
   <table class="table table-bordered">
     <thead class="table-dark">
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Nome</th>
         <th scope="col">Unidade de Medida</th>
         <th scope="col">Quantidade</th>
@@ -10,12 +9,11 @@
         <th scope="col">Data de Validade</th>
         <th scope="col">Data de Fabricação</th>
         <th scope="col">Perecível?</th>
-        <th scope="col"></th>
+        <th scope="col"><i class="fa-solid fa-screwdriver-wrench"></i></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let prod of prods">
-        <th scope="row">{{ prod.id }}</th>
         <td>{{ prod.name }}</td>
         <td>{{ prod.unity }}</td>
         <td>{{ prod.quantity }}</td>
@@ -23,9 +21,9 @@
         <td>{{ prod.validity | date:"dd/MM/yyyy" }}</td>
         <td>{{ prod.manufacture | date:"dd/MM/yyyy" }}</td>
         <td>{{ prod.perishable }}</td>
-        <td>
-          <a [routerLink]="['/product-edit', prod.id]" class="btn btn-primary">Editar</a>
-          <!-- <button (click)="deleteProduct(prod.id)" class="btn btn-danger">Deletar</button> -->
+        <td class="d-flex">
+          <a [routerLink]="['/product-edit', prod.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+          <button (click)="deleteProduct(prod.id)" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
         </td>
       </tr>
     </tbody>

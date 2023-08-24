@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/Product';
 import { ProductService } from 'src/app/services/product.service';
+import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
-// import { v4 as uuid } from 'uuid';
+import { MessagesService } from 'src/app/services/messages.service';
 
 @Component({
   selector: 'app-product-create',
@@ -10,29 +11,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-create.component.css'],
 })
 export class ProductCreateComponent implements OnInit {
-  productform: FormGroup | any;
+  btnText = 'Cadastrar';
+
+  prods: ProductService | any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private productService: ProductService,
+    private messageService: MessagesService,
     private router: Router,
-    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
-    this.productform = this.formBuilder.group({
-      name: ['', Validators.required],
-      unit: ['', Validators.required],
-      quantity: ['', Validators.required],
-      price: ['', Validators.required],
-      validity: ['', Validators.required],
-      manufacture: ['', Validators.required],
-      perishable: ['', Validators.required],
-    });
+    this.prods = this.productService.getProducts();
   }
 
-  submitProduct() {
-    console.log(this.productform.value);
-    this.productform.reset();
-    this.router.navigate(['/']);
+  // Create Product
+  createHandler(product: Product) {
+
+    if (product) {
+      // console.log(product);
+
+      let newProduct = {
+        id: uuidv4(),
+        name: product.name,
+        unit: product.unit,
+        quantity: product.quantity,
+        price: product.price,
+        expiration_date: product.expiration_date,
+        manufacturing_date: product.manufacturing_date,
+        perishable: product.perishable,
+      };
+
+      try {
+        this.prods.push(newProduct);
+        this.productService.addProduct(newProduct);
+        this.messageService.add('Produto cadastrado com sucesso!')
+        this.router.navigate(['/']); // Redirect to home
+      } catch (err) {
+        console.log(err);
+      }
+
+    } else {
+      console.log('Erro!');
+    }
   }
 }

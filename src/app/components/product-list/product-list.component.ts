@@ -14,6 +14,15 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.prods = this.productService.getProducts();
-    this.prods.unity
+  }
+
+  deleteProduct(id: string) {
+    for(let i = 0; i < this.prods.length; i++) {
+      if(this.prods[i].id == id) {
+          this.prods.splice(i, 1);
+      }
+    }
+
+    this.productService.deleteProduct(id);
   }
 }
