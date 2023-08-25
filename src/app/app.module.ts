@@ -14,11 +14,7 @@ import { ProductEditComponent } from './components/product-edit/product-edit.com
 
 // ngx-mask
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-import {
-  provideEnvironmentNgxCurrency,
-  NgxCurrencyDirective,
-  NgxCurrencyInputMode,
-} from 'ngx-currency';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @NgModule({
   declarations: [
@@ -40,12 +36,7 @@ import {
     NgxMaskPipe,
     NgxCurrencyDirective,
   ],
-  providers: [
-    provideNgxMask(),
-    // provideEnvironmentNgxCurrency({
-    //   inputMode: NgxCurrencyInputMode.Natural,
-    // }),
-  ],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

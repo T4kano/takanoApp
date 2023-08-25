@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
   navData = navbarData;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
+  onResize() {
     this.screenWidth = window.innerWidth;
     if(this.screenWidth <= 768) {
       this.collapsed = false;

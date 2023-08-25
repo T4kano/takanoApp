@@ -4,7 +4,7 @@ export interface Product {
   unit: string;
   quantity: number;
   price: number;
-  expiration_date?: number;
+  expiration_date?: Date;
   manufacturing_date: Date;
   perishable: boolean;
 }

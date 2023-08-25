@@ -42,22 +42,12 @@
         class="form-select"
         id="unit"
         formControlName="unit"
-        required
         (change)="quantityMask()"
       >
-        <option value="lt" selected>Litros</option>
+        <option value="lt">Litros</option>
         <option value="kg">Quilograma</option>
         <option value="un">Unidade</option>
       </select>
-
-      <!-- Error message -->
-      <div
-        class="form-text"
-        *ngIf="unit.invalid && formDir.submitted"
-        class="validation-error"
-      >
-        <span>A unidade de medida é obrigatória!</span>
-      </div>
     </div>
 
     <!-- Quantidade * -->
@@ -73,9 +63,7 @@
           [mask]="quantityMask()"
           required
         />
-        <span class="input-group-text">{{
-          this.productForm.value.unit ? this.productForm.value.unit : "lt"
-        }}</span>
+        <span class="input-group-text">{{ this.productForm.value.unit }}</span>
       </div>
 
       <!-- Error message -->
@@ -145,11 +133,7 @@
       >
         <span>Insira a data de validade</span>
       </div>
-      <div
-        class="form-text"
-        *ngIf="expiredProduct()"
-        class="validation-error"
-      >
+      <div class="form-text" *ngIf="expiredProduct()" class="validation-error">
         <span>Produto vencido!</span>
       </div>
     </div>

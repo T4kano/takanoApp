@@ -23,12 +23,10 @@ export class ProductFormComponent implements OnInit {
         Validators.required,
         Validators.maxLength(50),
       ]),
-      unit: new FormControl(this.productData ? this.productData.unit : 'lt', [
-        Validators.required,
-      ]),
+      unit: new FormControl(this.productData ? this.productData.unit : 'lt'),
       quantity: new FormControl(
         this.productData ? this.productData.quantity : '',
-        [Validators.required, Validators.min(0.1)]
+        [Validators.required, Validators.min(0.1),]
       ),
       price: new FormControl(this.productData ? this.productData.price : '', [
         Validators.required,
@@ -54,9 +52,9 @@ export class ProductFormComponent implements OnInit {
   get name() {
     return this.productForm.get('name')!;
   }
-  get unit() {
-    return this.productForm.get('unit')!;
-  }
+  // get unit() {
+  //   return this.productForm.get('unit')!;
+  // }
   get quantity() {
     return this.productForm.get('quantity')!;
   }
@@ -72,10 +70,10 @@ export class ProductFormComponent implements OnInit {
 
   // Máscara dinâmica para a quantidade
   quantityMask() {
-    let unit = this.productForm.value.unit;
+    let ut = this.productForm.value.unit;
 
-    if (unit == 'un') {
-      return '0*';
+    if (ut == 'un') {
+      return 'separator.0';
     } else {
       return 'separator.3';
     }
@@ -90,6 +88,8 @@ export class ProductFormComponent implements OnInit {
       this.productForm.controls['expiration_date'].setValidators([
         Validators.required, // set form control validators required
       ]);
+      
+      this.productForm.controls['expiration_date'].setErrors({ 'incorrect': true })
     } else {
       this.productForm.controls['expiration_date'].setValue(''); // clear input value
       this.productForm.controls['expiration_date'].disable(); // disable input
@@ -108,7 +108,7 @@ export class ProductFormComponent implements OnInit {
 
     // Comparando a data de validade com a data de fabricação
     if (data_validade && data_fabricação) {
-      if (data_validade >= data_fabricação) {
+      if (data_validade <= data_fabricação) {
         expired = true;
       }
     }

@@ -1,27 +1,36 @@
 # TakanoApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Esse projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 16.2.0.\
+Trata-se de um CRUD em `localstorage` utilizando validações de formulários com <a href="https://angular.io/guide/reactive-forms" target="_blank">`Angular Reactive Forms`</a> e máscaras de inputs com `ngx-mask`
 
-## Development server
+## Funcionalidades do Projeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [x] Listagem de Produtos
+- [x] Criação de Produtos
+- [x] Edição de Produtos
+- [x] Remoção de Produtos
 
-## Code scaffolding
+## Layout (responsivo)
+![home](./assets/print_01.png)
+![cadastro](./assets/print_02.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Preparação
+```bash
+# Clone este repositório
+$ git clone linkrepo
 
-## Build
+# Acesse a pasta do projeto no seu terminal
+$ cd takanoApp
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Instale as dependências
+$ npm install
 
-## Running unit tests
+# Execute a aplicação
+$ npm start
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# A aplicação será iniciada na porta 4200, acesse pleo navegado: https://localhost:4200
+```
+## Autores
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<a href="https://www.linkedin.com/in/t4kano/"><img src="https://avatars.githubusercontent.com/u/54607722?v=4" alt="imagem do desenvolvedor" style="width:100px;border-radius:10px;" /> Linkedin</a>

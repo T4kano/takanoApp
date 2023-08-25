@@ -1,5 +1,5 @@
 <div class="table-responsive" *ngIf="prods.length > 0; else noProducts">
-  <table class="table table-bordered">
+  <table class="table table-bordered align-middle">
     <thead class="table-dark">
       <tr>
         <th scope="col">Nome</th>
@@ -15,7 +15,7 @@
       <tr *ngFor="let prod of prods">
         <td>{{ prod.name }}</td>
         <td>{{ prod.quantity }} <span>{{ prod.unit }}</span></td>
-        <td>R$ {{ prod.price }}</td>
+        <td>{{ prod.price | currency:'BRL' }}</td>
         <td>{{ prod.expiration_date | date:"dd/MM/yyyy" }}</td>
         <td>{{ prod.manufacturing_date | date:"dd/MM/yyyy" }}</td>
         <td>{{ prod.perishable ? 'Sim' : 'Não' }}</td>

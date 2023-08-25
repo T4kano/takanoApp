@@ -11,17 +11,16 @@ export class BodyComponent implements OnInit {
   @Input() screenWidth = 0;
 
   ngOnInit(): void {
-    this.screenWidth = window.innerWidth;
+    this.screenWidth = window.innerWidth; // screen width
   }
 
+  // Alterar a classe do body para responsividade da Sidebar
   getBodyClass(): string {
     let styleClass = '';
     if(this.collapsed && this.screenWidth > 768) {
-      console.log('trimmed');
       styleClass = 'body-trimmed';
     } else if(this.collapsed && this.screenWidth <= 768 && this.screenWidth > 0) {
       styleClass = 'body-md-screen';
-      console.log('md-screen');
     }
     return styleClass;
   }
