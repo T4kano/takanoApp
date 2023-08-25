@@ -3,6 +3,10 @@
 Esse projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 16.2.0.\
 Trata-se de um CRUD em `localstorage` utilizando validações de formulários com <a href="https://angular.io/guide/reactive-forms" target="_blank">`Angular Reactive Forms`</a> e máscaras de inputs com `ngx-mask`
 
+## Índice
+- <a href="#-preparacao">Preparação</a>
+- <a href="#-autores">Autores</a>
+
 ## Funcionalidades do Projeto
 
 - [x] Listagem de Produtos
